@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+background-color: white-space;
+}
+.active {
+  background-color: white;
+}
+.split {
+  height: 100%;
+  width: 50%;
+  position: relative;
+  z-index: 1010101010;
+  float: left;
+  overflow-x: hidden;
+  
+}
+.container {
+  position: relative;
+  top: 5px;
+  left : 250px;
+ 
+}
+.left {
+  left: 0;
+  background-color: white;
+}
+.right {
+  right: 0;
+  background-color: white;
+}
+ #hi {
+  border-radius: 15px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+ input[type=submit] {
+  width: 80%;
+  background-color: #00BFFF;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#logout {
+  width: 30%;
+  background-color: #00BFFF;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ .fa-1x {
+font-size: 3rem;
+}
+.navbar-toggler.toggler-example {
+cursor: pointer;
+}
+.block {
+  display: block;
+  width: 40%;
+  border: none;
+  background-color: #00BFFF;
+  color : white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+}
+.fa {
+    color: white;
+}
+</style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <img src="SmartGCC.jpg" width="300" height="80">			
+    </div>
+    <div class="col-lg-6">
+<div class="row">
+
+	<div class="col-xs-6 col-md-2"><br>
+                
+                
+        <a href="#" class="btn btn-default  btn-sm">
+<span class="glyphicon glyphicon-print"></span> Print Output File 
+</a>
+                
+    </div>
+  <div class="col-sm-6"></div>
+
+	<div class="col-xs-6 col-md-2"><br>
+				<a href="#" class="btn btn-info btn-lg">
+					<span class="glyphicon glyphicon-log-out"></span> Log out
+				</a>
+	</div>
+	
+</div>
+</div>
+</div>
+
+
+
+<div class="row">
+	<div class="col-lg-3">
+        <h2><b>Welcome </b>
+        <label>${message }</label></h2><br> 
+        <b>Write your code below</b><i class="glyphicon glyphicon-arrow-down"></i></div>
+     <div class="col-lg-3">
+     <form action="${contextPath}/root/editor/readfile" onsubmit="return ipFileneeded();"method="post" enctype = "multipart/form-data">
+        <input type="file" name="ip_File" id="ip_File" ><br>
+        <button type="submit" class="btn block" id="load_file" >Load File</button>
+     </form> 
+	</div>
+<form action="${contextPath}/root/editor/readcode" method="post" onsubmit="return ipneeded();">
+<div class="col-lg-3" >
+ 	<select class="menuformat" name="usertype" id="usertype" onload="loadValue()">
+        <option value="Beginner">Beginner</option>
+        <option value="Typical">Experienced</option>
+        <option value="Expert">Expert</option>
+    </select><br><br>
+  
+    <div class="Beginner box">
+      <select class="menuformat" name="novice_option">
+      <option value="Compile">Compile</option>
+      <option value="Execute">Execute</option>
+      <option value="ConfigurationInfo">Configuration info</option>
+      </select>
+    </div>
+    <div class="Typical box">
+      <select class="menuformat" name="inter_option">
+      <option value="Execute">Execute</option>
+      <option value="Compile">Compile</option>
+      <option value="CodeGeneration">Code Generation</option>
+      <option value="CodeOptimisation">Code Optimization</option>
+      </select>
+    </div>
+    <div class="Expert box">
+      <select class="menuformat" name="expert_option">
+      <option value="Execute">Execute</option>
+      <option value="Compile">Compile</option>
+      <option value="ConfigurationInfo">Configuration info</option>
+      <option value="CodeGeneration">Code Generation</option>
+      <option value="CodeOptimisation">Code Optimization</option>
+      <option value="RequestWarnings">Request Warnings</option>
+      <option value="SuppressWarnings">Suppress Warnings</option>
+      </select>
+    </div>
+</div>
+    
+ <div class="col-lg-3">
+   <div class="custom-control custom-switch">
+     <input type="checkbox" class="custom-control-input" id="checkBoxChecked" name="example" onclick="myFunction()">
+      <label class="custom-control-label" for="switch1"> Show quick options</label><br><br>
+      <select class="menuformat"  style="display:none" id="frequent">
+        <option value="Execute">Execute</option>
+        <option value="Compile">Compile</option>
+        <option value="ConfigurationInfo">Configuration info</option>
+        <option value="CodeGeneration">Code Generation</option>
+        <option value="CodeOptimisation">Code Optimization</option>
+        <option value="RequestWarnings">Request Warnings</option>
+        <option value="SuppressWarnings">Suppress Warnings</option>
+        </select>
+  </div>
+</div>
+    
+</div>
+  
+  <script>
+$(document).ready(function(){
+    $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue){
+              //  $(".box").not("." + optionValue).hide();
+                $("." + optionValue).show();
+                if(optionValue == "Beginner" ){
+                  $(".box").not(".Beginner" ).hide();
+                }else if(optionValue == "Typical"){
+                  $(".box").not(".Typical" ).hide();
+                }else if(optionValue == "Expert"){
+                  $(".box").not(".Expert" ).hide();
+                }
+            } else{
+                $(".box").hide();
+            }
+        });
+    }).change();    
+});
+function myFunction() {
+  var checkBox = document.getElementById("checkBoxChecked");
+  var text = document.getElementById("frequent");
+  
+  if (checkBox.checked == true){      
+    text.style.display = "block";
+    $(".box").hide();
+    $("#usertype").hide();
+  } else {
+     text.style.display = "none";
+     $("#usertype").show();
+     $(".Beginner box").show();
+  }
+}
+function loadValue() {
+    var name='<%=session.getAttribute("usertype")%>';
+    alert(name);
+}
+</script>
+
+</div></br>
+
+<div class="row">
+<div class="col-lg-6">
+<div class="form-group" >
+  <textarea class="form-control rounded-0" id="code_editor" name="code_editor" rows="24" cols="100" placeholder="code here...">${code }</textarea>
+</div>
+</div>
+<div class="card col-lg-6" style="border-radius: 15px;  background-color: #f2f2f2;  padding: 20px">
+<div class="card-body">
+
+<b>Compiler GCC</b></br></br>
+   
+	<div class="row">
+     <b>Given Inputs:</b></br>
+  
+	 <textarea class="form-control rounded-0" id="ex1" ></textarea>
+	 </div>
+	 <div class="row">
+	<label>Command line arguments:</label></br>
+     <textarea class="form-control rounded-0" id="ex1" ></textarea>
+	</div></br>
+	<button type="submit" class="btn btn-info btn-lg block" >
+          <span class="glyphicon glyphicon-cog"></span> Execute
+        </button>
+</form>
+</div>
+
+</div>
+<b>Console</b>
+<div class="col-lg-6">
+<textarea class="form-control rounded-0" id="ex1" style="background-color:black ;color:white" rows="6">${result}</textarea>
+</div>
+</div>
+</form>
+<script type="text/javascript">
+function ipFileneeded() 
+{
+	  var ip_name = document.getElementById("ip_File").value;
+	  console.log(ip_name);
+	  if(ip_name == "")
+		  {
+		  alert("Please select a file!");
+		  return false;
+		  }
+	  else if(!ip_name.endsWith(".cpp"))
+		  {
+		  alert("Please select a .cpp file!");
+		  return false;
+		  }
+	  else
+		  {
+		  return true;
+		  }	  
+}
+function ipneeded()
+{
+ 	var text_area = document.getElementById("code_editor").value;
+ 
+ 	if(text_area=="")
+	 	{
+	 	alert("Please load a file or type into the editor!");
+	  	return false;
+	 	}
+ 	else
+ 	{
+	 return true;
+ 	}
+		
+}
+
+
+     </script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+body {
+background-color: white-space;
+}
+
+
+
+.active {
+  background-color: white;
+}
+
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: relative;
+  z-index: 1010101010;
+  float: left;
+  overflow-x: hidden;
+  
+}
+
+.container {
+  position: relative;
+  top: 5px;
+  left : 250px;
+ 
+}
+.left {
+  left: 0;
+  background-color: white;
+}
+.right {
+  right: 0;
+  background-color: white;
+}
+ #hi {
+  border-radius: 15px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+ input[type=submit] {
+  width: 30%;
+  background-color: #00BFFF;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#logout {
+  width: 30%;
+  background-color: #00BFFF;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+ .fa-1x {
+font-size: 3rem;
+}
+.navbar-toggler.toggler-example {
+cursor: pointer;
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* The Modal (background) */
+.menu-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+
+/* Modal Content */
+.menu-modal-content {
+  position: fixed;
+  background-color: #fefefe;
+  width: 25%;
+  top:0;
+  right:0;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s
+}
+
+/* The Close Button */
+.menu-close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.menu-close:hover,
+.menu-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu-modal-header {
+  padding: 2px 16px;
+  background-color: violet;
+  color: white;
+}
+
+.menu-modal-body {padding: 2px 16px;
+background-color:lightgrey;
+color: white;
+height:1000px;}
+
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {bottom: -300px; opacity: 0} 
+  to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+ right: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 14px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 200px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.menu-text{
+  font-size: x-large;
+  color: black;
+  font-style: normal;
+}
+.menuformat{
+  height: 2%;
+  font-size: large;
+  font-style: normal;
+  color: black;
+}
+</style>
+</head>
+<body>
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-6">
+
+	
+            <img src="SmartGCC.jpg" width="300" height="80">
+			
+</div>
+
+<div class="col-lg-6">
+<div class="row">
+  <div class ="col-sm-4">
+    
+      <select class="menuformat" >
+        <option selected value="">Please choose the type of user</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Expert">Expert</option>
+        <option value="Typical">Typical</option>
+    </select>    
+    </div>
+  
+    <div class="Beginner box" >
+      <select class="menuformat">
+      <option selected value="Menu">Menu</option>
+      <option value="Execute">Execute</option>
+      <option value="Compile">Compile</option>
+      <option value="ConfigurationInfo">Configuration info</option>
+    </select>
+    </div>
+    <div class="Typical box" >
+      <select class="menuformat">
+      <option selected value="Menu">Menu</option>
+      <option value="Execute">Execute</option>
+      <option value="Compile">Compile</option>
+      <option value="CodeGeneration">Code Generation</option>
+      <option value="CodeOptimisation">Code Optimisation</option>
+    </select>
+    </div>
+    <div class="Expert box" >
+      <select class="menuformat">
+      <option selected value="Menu">Menu</option>
+      <option value="Execute">Execute</option>
+      <option value="Compile">Compile</option>
+      <option value="ConfigurationInfo">Configuration info</option>
+      <option value="CodeGeneration">Code Generation</option>
+      <option value="CodeOptimisation">Code Optimisation</option>
+      <option value="RequestWarnings">Request Warnings</option>
+      <option value="SuppressWarnings">Suppress Warnings</option>
+    </select>
+    </div>
+	<div class="col-sm-6">
+    <!-- Trigger/Open The Modal -->
+<button id="myMenuBtn">
+  <div style="font-size:24px;cursor:pointer"> Menu </div>
+</button>
+
+<!-- The Modal -->
+<div id="myMenuModal" class="menu-modal">
+
+  <!-- Modal content -->
+  <div class="menu-modal-content">
+    <div class="menu-modal-header">
+      <span class="menu-close">&times;</span>
+      <div style="font-size:24px;cursor:pointer"> Menu </div>
+    </div>
+    <div class="Beginner1 box">
+    <div class="menu-modal-body">
+      <div class = "menu-text">Execute</div>
+      <div class = "menu-text">Compile</div>
+      <div class = "menu-text">Configuration info</div>
+    </div>
+    </div>
+    <div class="Typical1 box">
+      <div class="menu-modal-body">
+        <div class = "menu-text">Execute</div>
+        <div class = "menu-text">Compile</div>
+        <div class = "menu-text">Code Optimisation</div>
+        <div class = "menu-text">Code Generation</div>
+      </div>
+      </div>
+      <div class="Expert1 box">
+        <div class="menu-modal-body">
+          <div class = "menu-text">Execute</div>
+          <div class = "menu-text">Compile</div>
+          <div class = "menu-text">Code Optimisation</div>
+          <div class = "menu-text">Code Generation</div>
+          <div class = "menu-text">Compilation Time</div>
+          <div class = "menu-text">Configuration info</div>
+          <div class = "menu-text">Request Warnings</div>
+          <div class = "menu-text">Suppress Warnings</div>
+        </div>
+        </div>
+  </div>
+
+</div>
+  </div>
+
+
+	<div class="col-md-3">
+				<a href="#" class="btn btn-info btn-lg">
+					<span class="glyphicon glyphicon-log-out"></span> Log out
+				</a>
+	</div>
+	<div class="col-md-3">
+				<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  
+  <a href="#">Execute</a>
+  <a href="#">Compile</a>
+  <a href="#">Code Optimisation</a>
+  <a href="#">Code Generation</a>
+  <a href="#">Compilation Time</a>
+  <a href="#">Configuration info</a>
+  <a href="#">Request Warnings</a>
+  <a href="#">Suppress Warnings</a>
+ 
+</div>
+<script>
+  // Get the modal
+var modal1 = document.getElementById("myMenuModal");
+
+// Get the button that opens the modal
+var btn1 = document.getElementById("myMenuBtn");
+
+// Get the <span> element that closes the modal
+var span1 = document.getElementsByClassName("menu-close")[0];
+
+// When the user clicks the button, open the modal 
+btn1.onclick = function() {
+  modal1.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span1.onclick = function() {
+  modal1.style.display = "none";
+}
+$(document).ready(function(){
+    $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue){
+              //  $(".box").not("." + optionValue).hide();
+                $("." + optionValue).show();
+                if(optionValue == "Beginner" ){
+                  $(".box").not(".Beginner" ).hide();
+                }else if(optionValue == "Typical"){
+                  $(".box").not(".Typical" ).hide();
+                }else if(optionValue == "Expert"){
+                  $(".box").not(".Expert" ).hide();
+                }
+            } else{
+                $(".box").hide();
+            }
+        });
+    }).change();
+    var textFile = null;
+    $('#Execute').click(function() {
+      
+    
+      var create = document.getElementById('Execute'),
+     textbox = document.getElementById('comment');
+      var link = document.getElementById('downloadlink');
+    link.href = makeTextFile(textbox.value);
+    link.style.display = 'block';
+    alert(  $("#comment").val()  );
+  });
+  makeTextFile = function (text) {
+    var data = new Blob([text], {type: 'text/plain'});
+
+    // If we are replacing a previously generated file we need to
+    // manually revoke the object URL to avoid memory leaks.
+    if (textFile !== null) {
+      window.URL.revokeObjectURL(textFile);
+
+    }
+    textFile = window.URL.createObjectURL(data);
+    
+
+    return textFile;
+  };
+
+    
+
+    
+});
+</script>
+<a download="info.txt" id="downloadlink" style="display: none">Download</a>
+
+<span style="font-size:24px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.4)"
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.body.style.backgroundColor = "white"
+}
+</script>
+	</div>
+	
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-6">
+
+        <div class="col-sm-4"><b>Write your code below</b><i class="glyphicon glyphicon-arrow-down"></i></div>
+        <div class="col-sm-4"> <a href style="color:black"><b class="glyphicon glyphicon-search">Search</b></a></div>
+        <button class="col-sm-2" class="btn btn-default btn-sm" id="myBtn">
+          <span class="glyphicon glyphicon-folder-open"></span> File Search
+          </button>
+          <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <a href="C://Suruthi">Click here to open the folder
+              </a>
+            </div>
+          
+          </div>
+
+				
+</div>
+<div class="col-lg-6">
+<div class= "col-sm-4">
+<a href="#" class="btn btn-default  btn-sm">
+<span class="glyphicon glyphicon-print"></span> Print Output File 
+</a>
+</div>
+</div>
+</div></br>
+<div class="row">
+<div class="col-lg-6">
+  <textarea id="comment" rows="25" cols="100"></textarea>
+</div>
+<div class="card col-lg-6" style="border-radius: 15px;  background-color: #f2f2f2;  padding: 20px">
+<div class="card-body">
+<form>
+<b>Compiler GCC</b></br></br>
+   
+   <div class="dropdown">
+   <b>Select JDK</b>&emsp;&emsp;
+   
+   <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">JDK Types
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JDK 10</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JDK 11</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JDK 12</a></li>
+      
+    </ul>
+   
+	</div>
+	<div class="row">
+     <b>Given Inputs:</b></br>
+  
+	 <textarea class="form-control rounded-0" id="ex1" ></textarea>
+	 </div>
+	 <div class="row">
+	<label>Command line arguments:</label></br>
+     <textarea class="form-control rounded-0" id="ex1" ></textarea>
+	</div></br>
+          <button  class="btn btn-info btn-lg" id="Execute"> <span class="glyphicon glyphicon-cog"></span> Execute</button>
+        
+</form>
+</div>
+
+</div>
+<b>Console/Label</b>
+<div class="col-lg-6">
+<textarea class="form-control rounded-0" id="ex1" style="background-color:black ;color:white" rows="6"></textarea>
+</div>
+</div>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
