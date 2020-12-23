@@ -168,10 +168,12 @@ public class Compiler_interface_unix {
 class printOutput extends Thread {
 	InputStream is = null;
 	String s = null;
-	String filepath = "//Users//nareesh//Downloads//SOEN_6461-master//SmartGCC//src//main//webapp//upload//op.txt";
+	String filepath = System.getProperty("user.dir")+"//src//main//webapp//upload//op.txt";
 	FileWriter opWriter=null;
 	printOutput(InputStream is, String type) {
 		this.is = is;
+	    System.out.println("Working Directory = " + filepath);
+
 	}
 	public void run() {
 		
