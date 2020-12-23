@@ -63,7 +63,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value ="/clerk/user_register", method = {RequestMethod.POST, RequestMethod.GET})
-	public void user_register(HttpServletRequest request,
+	public ModelAndView user_register(HttpServletRequest request,
 			HttpServletResponse response) throws SAXException, IOException, ParserConfigurationException {		
 		User user = new User();
 		UserDAO dao = new UserDAO();
@@ -76,16 +76,20 @@ public class LoginController {
 		user.setPassword(password);
 		user.setUserType(usertype);
 		boolean created=dao.createUser(user);
-		if(created==true)
-		{
-			showEditor(user,userName);
-		}
-		else
-		{
-			System.out.println("new user creation unsuccessful");
-			httpSession.setAttribute("user", userName);
-			response.sendRedirect("/root");				
-		}
+		mv.setViewName("editor");
+		ArrayList<String> quick_ops = new ArrayList<String>();
+		quick_ops.add("quick_option");
+		quick_ops.add("quick_option");
+		quick_ops.add("quick_option");
+		mv.addObject("quick_ops",quick_ops);
+		httpSession.setAttribute("username", user.getUserName());
+		httpSession.setAttribute("usertype", user.getUserType());
+		httpSession.setAttribute("option", "Compile");
+		String msg = " "+userName ;
+		mv.addObject("message",msg);
+		return mv;
+
+		
 			
 	}
 	

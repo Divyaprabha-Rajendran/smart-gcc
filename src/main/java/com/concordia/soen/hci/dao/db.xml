@@ -77,4 +77,10 @@
 <option>Compile</option>
 </freqoptions>
 </user>
+<user>
+<username>castiel</username>
+<password>dean</password>
+<usertype>Beginner</usertype>
+<freqoptions/>
+</user>
 </users>
